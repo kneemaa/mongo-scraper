@@ -1,2 +1,2 @@
-# scraping-exercise
+# mongo-scraper
 You wouldn't download a car...

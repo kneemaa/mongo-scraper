@@ -1,5 +1,5 @@
 {
-  "name": "scraping-exercise",
+  "name": "mongo-scraper",
   "version": "1.0.0",
   "description": "Practice for webscraping",
   "main": "server.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/smalldoorman/scraping-exercise.git"
+    "url": "git+https://github.com/smalldoorman/mongo-scraper.git"
   },
   "keywords": [
     "mongoose",
@@ -18,15 +18,16 @@
   "author": "Nema Darban <nema.darban@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/smalldoorman/scraping-exercise/issues"
+    "url": "https://github.com/smalldoorman/mongo-scraper/issues"
   },
-  "homepage": "https://github.com/smalldoorman/scraping-exercise#readme",
+  "homepage": "https://github.com/smalldoorman/mongo-scraper#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "mongoose": "^5.0.12",
-    "request": "^2.85.0"
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
   }
 }
