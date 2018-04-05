@@ -21,8 +21,8 @@ app.set("view engine", "handlebars")
 
 mongoose.connect("mongodb://localhost/scraperdb")
 
-const request = require('request')
-const cheerio = require('cheerio')
+/*const request = require('request')
+const cheerio = require('cheerio')*/
 
 
 app.use(routes)
