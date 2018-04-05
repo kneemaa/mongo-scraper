@@ -1,0 +1,19 @@
+.card {
+	width: 18rem;
+}
+.card-columns {
+	width: 90%;
+	column-count: 4;
+}
+.container {
+	margin-left: 20%;
+}
+.button-group {
+	margin: 0 auto;
+}
+img {
+	height: 150px;
+}
+body {
+	background-color: black;
+}
