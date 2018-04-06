@@ -3,10 +3,7 @@ const cheerio = require('cheerio')
 const mongoose = require("mongoose")
 const Notes = require("./models/notes")
 const Articles = require("./models/article")
-const db = {
-	Notes: Notes,
-	Articles: Articles
-}
+const db = { Notes: Notes, Articles: Articles}
 
 const scrape = () => {
 	request('https://www.npr.org/sections/news/', (error, response, html) => {
@@ -29,11 +26,11 @@ const scrape = () => {
 			title: title,
 			image: image,
 		}).then( article => {
-			console.log(article)
 		}).catch( err => {
 			console.log(err)
 		})
 	})
+
 	return results
 })
 }

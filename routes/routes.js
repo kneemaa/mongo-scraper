@@ -16,17 +16,15 @@ router.get('/', (req,res) => {
 		console.log(err)
 		res.render('index')
 	})
-	
 })
 
-router.get('/scrape', (req,res) => {
+router.get('/api/scrape', (req,res) => {
 	scraper()
 	res.redirect('/')
 })
 
-router.post('/save', (req,res) => {
+router.post('/api/article/add', (req,res) => {
 	let id = req.body.id
-	console.log(id)
 
 	db.Articles.update(
 		{"_id": id},
@@ -34,6 +32,41 @@ router.post('/save', (req,res) => {
 		).catch(err => {
 			console.log(err)
 		})
+})
+
+router.post('/api/article/delete', (req,res) => {
+	let id = req.body.id
+
+	db.Articles.update(
+		{"_id": id},
+		{$set: {saved: false}}
+		).catch(err => {
+			console.log(err)
+		})
+
+})
+
+router.get('/saved', (req,res) => {
+	db.Articles.find({saved: true}).then(articles => {
+		res.render('saved', {articles: articles})
+	}).catch(err => {
+		res.render('saved')
+	})
+	
+})
+
+router.post('/api/note/add', (req,res) => {
+	console.log('save note')
+	db.Notes.create({ 
+			body: req.body.note, 
+			article: req.body.id,
+		})
+		.then(notes => {
+		})
+		.catch(err => {
+			console.log(err)
+		})
+	
 })
 
 module.exports = router

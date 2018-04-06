@@ -18,11 +18,7 @@ const ArticleSchema = new Schema({
 	saved: {
 		type: Boolean,
 		default: false,
-	},
-	notes: [{
-		type: Schema.Types.ObjectId,
-		ref: "Notes"
-	}]
+	}
 })
 
 let Article = mongoose.model("Article", ArticleSchema)

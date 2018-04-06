@@ -1,22 +1,56 @@
-$(document).on("click",".scrape",function() {
-	
+const doc = $(document)
+
+doc.on("click",".scrape",function() {
 	$.ajax({
-		url: '/scrape',
+		url: '/api/scrape',
 		method: 'GET'
 	}).done( function(data) {
 	})
 })
 
-$(document).on('click','.save', function() {
+doc.on('click','.save', function() {
 
 	$.ajax({
-		url: '/save',
+		url: '/api/article/add',
 		method: 'POST',
 		data: {id: this.id}
-	}).done( function(data) {
-	})
+	}).done( function(data) {})
+	location.reload()
 })
 
-$(document).on('click','.saved-articles', function() {
-	console.log("i change pages to show saved articles")
+doc.on('click','.saved-articles', function() {
+	window.location = '/saved'
+})
+
+doc.on('click','.home', function() {
+	window.location = '/'
+})
+
+doc.on('click', '.unsave', function() {
+	$.ajax({
+		url: '/api/article/delete',
+		method: 'POST',
+		data: {id: this.id}
+	}).done( function(data) {})
+	location.reload()
+})
+
+doc.on('click','.note', function(event) {
+	$('.modal').modal('show')
+})
+
+doc.on('click', '.save-note', function(event) {
+	let id = this.id
+	let note = $(`.note-${id}`).val()
+	
+	$.ajax({
+		url: '/api/note/add',
+		method: 'POST',
+		data: {
+			id: id,
+			note: note,
+		}
+	}).done( function(data) {
+	})
+	$('.modal').modal('hide')
 })
