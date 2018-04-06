@@ -1,9 +1,4 @@
-<nav class="navbar nabvar-light bg-light">
-	<div class="button-group">
-		<button type="button" class="saved-articles btn btn-primary">Saved Articles</button>
-		<button type="button" class="scrape btn btn-secondary">Scrape</button>
-	</div>
-</nav>
+{{>navbar}}
 
 <div class="container">
 	<div class="card-columns">
@@ -12,7 +7,11 @@
 			<img src="{{image}}" alt="" class="card-img-top">
 			<div class="card-body">
 				<a href="{{url}}"><p class="card-title">{{title}}</p></a>
-				<a href="#" id="{{_id}}" class="save btn btn-primary">Save for Later</a>
+				{{#if saved}}
+					<a href="#" id="{{_id}}" class="unsave btn btn-danger">Unsave</a>
+				{{else}}
+					<a href="#" id="{{_id}}" class="save btn btn-primary">Save for Later</a>
+				{{/if}}
 			</div>
 		</div>
 		{{/each}}
