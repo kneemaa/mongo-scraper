@@ -6,6 +6,7 @@ doc.on("click",".scrape",function() {
 		method: 'GET'
 	}).done( function(data) {
 	})
+	window.location = '/'
 })
 
 doc.on('click','.save', function() {
@@ -26,7 +27,7 @@ doc.on('click','.home', function() {
 	window.location = '/'
 })
 
-doc.on('click', '.unsave', function() {
+doc.on('click', '.delete', function() {
 	$.ajax({
 		url: '/api/article/delete',
 		method: 'POST',
@@ -53,5 +54,15 @@ doc.on('click', '.save-note', function(event) {
 	})
 	$('.modal').modal('hide')
 	$(`.note-${id}`).val('')
+	window.location = '/saved'
+})
+
+doc.on('click','.delete-note', function() {
+	let id = this.id
+	$.ajax({
+		url: '/api/note/delete/' + id,
+		method: 'POST'
+	}).done( function(data) {
+	})
 	window.location = '/saved'
 })
