@@ -19,6 +19,10 @@ const ArticleSchema = new Schema({
 		type: Boolean,
 		default: false,
 	},
+	date: {
+		type: Date,
+		default: Date(),
+	},
 	notes: [{
 		type: Schema.Types.ObjectId,
 		ref: "Notes"

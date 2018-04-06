@@ -1,16 +1,14 @@
 {{>navbar}}
 
-<h1>HELLO SAVED</h1>
-
 <div class="container">
-	<div class="card-columns">
+	<div class="">
 		{{#each articles}}
-		<div class="card">
+		<div class="card article-card">
 			<img src="{{image}}" alt="" class="card-img-top">
 			<div class="card-body">
-				<a href="{{url}}"><p class="card-title">{{title}}</p></a>
-				<a href="#" id="{{_id}}" class="unsave btn btn-danger">Delete</a>
-				<a href="#" id="{{_id}}" class="note btn btn-danger">Notes</a>
+				<a href="{{url}}" target="_blank"><p class="card-title">{{title}}</p></a>
+				<span class="note-wrapper"><a href="#" id="{{_id}}" class="delete btn">Delete</a>
+				<a href="#" id="{{_id}}" class="note btn">{{notes.length}} Notes</a></span>
 			</div>
 		</div>
 		{{!-- {{>modal}} --}}
@@ -25,7 +23,7 @@
 				  {{!-- <label for={{_id}}>Enter your notes here</label> --}}
 				  <div class="notes-group">
 				  {{#each notes}}
-				  	<p class="note-entry">{{body}}</p><span class="note-entry" aria-hidden="true">&times;</span>
+				  	<p class="note-entry">{{body}}<span class="note-entry" aria-hidden="true"><a href="#" id="{{_id}}" class="delete-note"><img class="deleteImg" src="./images/delete.png"></img></a></span></p>
 				  {{/each}}
 				  </div>
 				  <textarea class="note-{{_id}} form-control" id="{{_id}}" rows="3"></textarea>
@@ -33,7 +31,6 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" id="{{_id}}" class="save-note btn btn-primary">Save Note</button>
-		        {{!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
 		      </div>
 		    </div>
 		  </div>

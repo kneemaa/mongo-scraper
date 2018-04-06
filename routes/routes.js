@@ -10,7 +10,7 @@ const db = {
 }
 
 router.get('/', (req,res) => {
-	db.Articles.find({}).then(articles => {
+	db.Articles.find({}).sort({date: -1}).then(articles => {
 		res.render('index', {articles: articles})
 	}).catch(err => {
 		console.log(err)
@@ -20,9 +20,13 @@ router.get('/', (req,res) => {
 
 router.get('/api/scrape', (req,res) => {
 	scraper()
-	res.redirect('/')
+	db.Articles.find({}).sort({date: -1}).then(articles => {
+		res.render('index', {articles: articles})
+	}).catch(err => {
+		console.log(err)
+		res.render('index')
+	})
 })
-
 router.post('/api/article/add', (req,res) => {
 	let id = req.body.id
 
@@ -58,7 +62,7 @@ router.get('/saved', (req,res) => {
 
 
 router.post('/api/note/add/:id', (req,res) => {
-	console.log('save note')
+
 	db.Notes.create({ 
 			body: req.body.note,
 		})
@@ -74,7 +78,21 @@ router.post('/api/note/add/:id', (req,res) => {
 		.catch(err => {
 			console.log(err)
 		})
-	res.render('saved')
 })
+
+router.post('/api/note/delete/:id', (req,res) => {
+
+	db.Notes.deleteOne({ _id: req.params.id})
+		.catch(err => {
+			console.log(err)
+		})
+
+	db.Articles.find({saved: true}).populate('notes').then(articles => {
+		res.render('saved', {articles: articles})
+	}).catch(err => {
+		res.render('saved')
+	})
+})
+
 
 module.exports = router
