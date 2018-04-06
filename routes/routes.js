@@ -47,26 +47,34 @@ router.post('/api/article/delete', (req,res) => {
 })
 
 router.get('/saved', (req,res) => {
-	db.Articles.find({saved: true}).then(articles => {
+
+	db.Articles.find({saved: true}).populate('notes').then(articles => {
 		res.render('saved', {articles: articles})
 	}).catch(err => {
 		res.render('saved')
 	})
-	
+
 })
 
-router.post('/api/note/add', (req,res) => {
+
+router.post('/api/note/add/:id', (req,res) => {
 	console.log('save note')
 	db.Notes.create({ 
-			body: req.body.note, 
-			article: req.body.id,
+			body: req.body.note,
 		})
 		.then(notes => {
+			return db.Articles.findOneAndUpdate({ _id: req.params.id}, {$push: {notes: notes._id}}, {new: true})
+		}).then( (req,res) => {
+			db.Articles.find({saved: true}).populate('notes').then(articles => {
+				res.render('saved', {articles: articles})
+			}).catch(err => {
+				res.render('saved')
+			})
 		})
 		.catch(err => {
 			console.log(err)
 		})
-	
+	res.render('saved')
 })
 
 module.exports = router

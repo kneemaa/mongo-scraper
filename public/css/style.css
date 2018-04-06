@@ -1,3 +1,10 @@
+.notes-group {
+	overflow-y: auto;
+	max-height: 200px;
+}
+.note-entry {
+	display: flex;
+}
 .navbar {
 	margin-bottom: 10px;
 }

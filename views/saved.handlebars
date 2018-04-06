@@ -13,19 +13,21 @@
 				<a href="#" id="{{_id}}" class="note btn btn-danger">Notes</a>
 			</div>
 		</div>
-		<div class="modal" tabindex="-1" role="dialog">
+		{{!-- {{>modal}} --}}
+		<div class="modal modal-{{_id}}" tabindex="-1" role="dialog">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title">Notes for:</h5>
-		        <p>{{title}}</p>
-		        {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button> --}}
+		        <h5 class="modal-title">{{title}}</h5>
 		      </div>
 		      <div class="modal-body">
 		        <div class="form-group">
 				  {{!-- <label for={{_id}}>Enter your notes here</label> --}}
+				  <div class="notes-group">
+				  {{#each notes}}
+				  	<p class="note-entry">{{body}}</p><span class="note-entry" aria-hidden="true">&times;</span>
+				  {{/each}}
+				  </div>
 				  <textarea class="note-{{_id}} form-control" id="{{_id}}" rows="3"></textarea>
 				</div>
 		      </div>

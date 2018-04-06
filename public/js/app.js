@@ -36,7 +36,7 @@ doc.on('click', '.unsave', function() {
 })
 
 doc.on('click','.note', function(event) {
-	$('.modal').modal('show')
+	$(`.modal-${this.id}`).modal('show')
 })
 
 doc.on('click', '.save-note', function(event) {
@@ -44,13 +44,14 @@ doc.on('click', '.save-note', function(event) {
 	let note = $(`.note-${id}`).val()
 	
 	$.ajax({
-		url: '/api/note/add',
+		url: '/api/note/add/' + id,
 		method: 'POST',
 		data: {
-			id: id,
 			note: note,
 		}
 	}).done( function(data) {
 	})
 	$('.modal').modal('hide')
+	$(`.note-${id}`).val('')
+	window.location = '/saved'
 })
