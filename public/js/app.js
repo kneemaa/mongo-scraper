@@ -5,8 +5,10 @@ doc.on("click",".scrape",function() {
 		url: '/api/scrape',
 		method: 'GET'
 	}).done( function(data) {
+		return window.location = '/'
 	})
 	window.location = '/'
+
 })
 
 doc.on('click','.save', function() {
@@ -16,6 +18,7 @@ doc.on('click','.save', function() {
 		method: 'POST',
 		data: {id: this.id}
 	}).done( function(data) {})
+
 	location.reload()
 })
 
@@ -33,6 +36,7 @@ doc.on('click', '.delete', function() {
 		method: 'POST',
 		data: {id: this.id}
 	}).done( function(data) {})
+	
 	location.reload()
 })
 
@@ -64,5 +68,9 @@ doc.on('click','.delete-note', function() {
 		method: 'POST'
 	}).done( function(data) {
 	})
+	$(`p.note-${this.id}`).remove()
+})
+
+$(document).on('hidden.bs.modal',".modal", function() {
 	window.location = '/saved'
 })

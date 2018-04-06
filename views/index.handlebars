@@ -1,6 +1,7 @@
 {{>navbar}}
 
 <div class="wrapper">
+	{{#if articles}}
 	<div class="all-articles">
 		{{#each articles}}
 		<div class="card article-card">
@@ -16,4 +17,9 @@
 		</div>
 		{{/each}}
 	</div>
+	{{else}}
+		<div class="banner home-banner">
+			<h1>You have no Scraped Articles, click <a href="/scrape">Scrape</a> to get some articles.</h1>
+		</div>
+	{{/if}}
 </div>

@@ -1,3 +1,14 @@
+.banner {
+	top: 200px;
+    position: relative;
+    opacity: .25;
+}
+.saved-banner {
+ 	margin-left: 150px;
+}
+.home-banner {
+	margin-left: 100px;
+}
 .saved-articles, .home, .scrape {
 	background-color: grey;
 	color: white;
