@@ -12,7 +12,8 @@ const db = {
 	Notes: Notes,
 	Articles: Articles
 }
-
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraperdb"
+mongoose.Promise = Promise
 const PORT = process.env.PORT || 3000
 app.use(logger('dev'))
 app.use(express.static("public"))
@@ -21,11 +22,7 @@ app.use(bodyParser.json())
 app.engine("handlebars", exphbs({defaultLayout: "main"}))
 app.set("view engine", "handlebars")
 
-mongoose.connect("mongodb://localhost/scraperdb")
-
-/*const request = require('request')
-const cheerio = require('cheerio')*/
-
+mongoose.connect(MONGODB_URI)
 
 app.use(routes)
 
